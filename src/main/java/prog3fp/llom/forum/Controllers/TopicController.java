@@ -44,10 +44,8 @@ public class TopicController {
         if(bindingResult.hasErrors()){
             return "edittopic";
         }
-        String topicId = String.valueOf(topic.getTopicId());
         topicService.save(topic);
-        //return to the topic via topicId
-        return "redirect:topic/"+topicId;
+        return "redirect:/";
     }
 
     @RequestMapping("/topic/edittopic/{topicId}")
