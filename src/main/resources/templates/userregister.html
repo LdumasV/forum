@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
+<!--@thymesVar id="user" type="com.example.DumasV_2195847.domain.User"-->
+<!--@thymesVar id="userid" type="Long"-->
+<!--@thymesVar id="username" type="String"-->
+<!--@thymesVar id="password" type="String"-->
+<!--@thymesVar id="email" type="String"-->
+<!--@thymesVar id="photo" type="string"-->
+<!--*/-->
+<head>
+    <meta charset="utf-8" />
+    <title>Create New Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <style>
+        .errors{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Register Student</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:object="${user}" th:action="@{/register/user}"  method="post">
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Username</label>
+                    <td>
+                        <input type="hidden" th:field="*{userid}" />
+                        <input type="text" th:field="*{username}" class="form-control" placeholder="username" />
+                        <span th:errors="*{username}" class="errors"></span>
+                    </td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Password</label>
+
+                    <td>
+                        <input type="password" th:field="*{password}" class="form-control" placeholder="password" />
+                        <span th:errors="*{password}" class="errors"></span>
+                    </td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >User Photo?</label>
+                    <td><input type="date" th:field="*{photo}" class="form-control" placeholder="www.url.com" /></td>
+                    <span th:errors="*{photo}" class="errors"></span>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >E-mail</label>
+                    <td><input type="text" th:field="*{email}" class="form-control" placeholder="email" /></td>
+                    <span th:errors="*{email}" class="errors"></span>
+                </tr>
+            </div>
+
+            <br>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
