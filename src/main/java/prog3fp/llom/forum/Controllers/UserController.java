@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
-        return "userregister";
+        return "register";
     }
 
     @RequestMapping(value = "/register/user", method = RequestMethod.POST)
@@ -43,7 +43,7 @@ public class UserController {
         }
 
         if(bindingResult.hasErrors()){
-            return "userpanel";
+            return "register";
         }
         userService.save(user);
         return "redirect:/";
@@ -74,17 +74,17 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping("/user/edit/{id}")
-    public ModelAndView showEditUserPage(@PathVariable("id") Long id) {
+    @RequestMapping("/user/edit/{userId}")
+    public ModelAndView showEditUserPage(@PathVariable("userId") Long userId) {
         ModelAndView mav = new ModelAndView("userpanel");
-        Optional<User> user = userService.findUserById(id);
+        Optional<User> user = userService.findUserById(userId);
         mav.addObject("user", user);
         return mav;
 
     }
-    @RequestMapping("/user/delete/{id}")
-    public String deleteUserPage(@PathVariable(name = "id") Long id) {
-        userService.delete(id);
+    @RequestMapping("/user/delete/{userId}")
+    public String deleteUserPage(@PathVariable(name = "userId") Long userId) {
+        userService.delete(userId);
         return "redirect:/";
     }
 

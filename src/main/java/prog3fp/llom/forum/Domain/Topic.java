@@ -23,4 +23,8 @@ public class Topic {
     private String creationDate;
     @Transient
     private List<Post> postList = new ArrayList<>();
+
+    public Topic(){}
+    public Topic(Topic topic) {
+    }
 }

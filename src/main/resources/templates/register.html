@@ -2,8 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
-<!--@thymesVar id="user" type="com.example.DumasV_2195847.domain.User"-->
-<!--@thymesVar id="userid" type="Long"-->
+<!--@thymesVar id="user" type="prog3fp.llom.forum.domain.User"-->
+<!--@thymesVar id="userId" type="Long"-->
 <!--@thymesVar id="username" type="String"-->
 <!--@thymesVar id="password" type="String"-->
 <!--@thymesVar id="email" type="String"-->
@@ -31,7 +31,7 @@
                 <tr>
                     <label class="form-label" >Username</label>
                     <td>
-                        <input type="hidden" th:field="*{userid}" />
+                        <input type="hidden" th:field="*{userId}" />
                         <input type="text" th:field="*{username}" class="form-control" placeholder="username" />
                         <span th:errors="*{username}" class="errors"></span>
                     </td>
@@ -50,7 +50,7 @@
             <div alight="left">
                 <tr>
                     <label class="form-label" >User Photo?</label>
-                    <td><input type="date" th:field="*{photo}" class="form-control" placeholder="www.url.com" /></td>
+                    <td><input type="text" th:field="*{photo}" class="form-control" placeholder="www.url.com" /></td>
                     <span th:errors="*{photo}" class="errors"></span>
                 </tr>
             </div>

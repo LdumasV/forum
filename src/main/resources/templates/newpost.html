@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
+<!--@thymesVar id="post" type="prog3fp.llom.forum.Domain.Post"-->
+<!--@thymesVar id="topicId" type="Long"-->
+<!--@thymesVar id="postId" type="Long"-->
+<!--@thymesVar id="creatorId" type="Long"-->
+<!--@thymesVar id="creationDate" type="String"-->
+<!--@thymesVar id="text" type="String"-->
+<!--*/-->
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<!--<div th:replace="fragments/topnav :: navbar"></div>-->
+<div align="center">
+    <h1>Create New Post</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/post/savepost}" th:object="${post}" method="post">
+
+
+            <div align="left">
+                <tr>
+                    <label class="form-label" >Text</label>
+                    <td>
+                        <input type="hidden" th:field="*{postId}" />
+                        <input type="text" th:field="*{text}" class="form-control"  />
+                    </td>
+                </tr>
+            </div>
+
+
+            <div align="left">
+                <tr>
+                    <label class="form-label" >Creation Date</label>
+                    <td><input type="date" th:field="*{creationDate}" class="form-control" /></td>
+                </tr>
+            </div>
+
+            <div align="left">
+                <tr>
+                    <label class="form-label" >Creator ID</label>
+
+                    <td>
+                        <input type="text" th:field="*{creatorId}" class="form-control"  />
+                    </td>
+                </tr>
+            </div>
+
+            <div align="left">
+                <tr>
+                    <label class="form-label" >Topic ID</label>
+                    <td><input type="text" th:field="*{topicId}" class="form-control" /></td>
+                </tr>
+            </div>
+
+
+
+            <br>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+

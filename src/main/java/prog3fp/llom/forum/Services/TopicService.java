@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TopicService {
-    Optional<Topic> findTopicById(Long id);
+    Topic findTopicByTopicId(Long id);
 
     List<Topic> findAllTopics();
 
@@ -14,5 +14,5 @@ public interface TopicService {
 
     void delete(Long id);
 
-
+    Topic findTopByOrderByTopicIdDesc();
 }

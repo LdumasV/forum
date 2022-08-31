@@ -23,18 +23,28 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @GetMapping("/topic/{id}")
-    public String viewHomePage(@PathVariable("topicId") Long topicId, Model model) {
-        List<Post> topicList = postService.findTopicPosts(topicId);
-        model.addAttribute("topiclist", topicList);
+    @GetMapping("/")
+    public String index(Model model){
+        List<Topic> listtopics = topicService.findAllTopics();
+        model.addAttribute("listtopics", listtopics);
+        return "index";
+    }
 
-        return "topic";
+    @GetMapping("/topic/{topicId}")
+    public ModelAndView viewHomePage(@PathVariable("topicId") Long topicId, Model model) {
+        List<Post> postList = postService.findTopicPosts(topicId);
+        Topic topic = topicService.findTopicByTopicId(topicId);
+        topic.setPostList(postList);
+        ModelAndView mav = new ModelAndView("topic");
+        mav.addObject("topic", topic);
+
+        return mav;
     }
 
     @GetMapping("/topic/newtopic")
     public String add(Model model) {
         model.addAttribute("topic", new Topic());
-        return "edittopic";
+        return "newtopic";
     }
 
     @RequestMapping(value = "/topic/savetopic", method = RequestMethod.POST)
@@ -42,16 +52,17 @@ public class TopicController {
         //if topic is present
 
         if(bindingResult.hasErrors()){
-            return "edittopic";
+            return "newtopic";
         }
         topicService.save(topic);
+        Topic saved = topicService.findTopByOrderByTopicIdDesc();
         return "redirect:/";
     }
 
     @RequestMapping("/topic/edittopic/{topicId}")
     public ModelAndView showEditTopicPage(@PathVariable("topicId") Long topicId) {
-        ModelAndView mav = new ModelAndView("edittopic");
-        Optional<Topic> topic = topicService.findTopicById(topicId);
+        ModelAndView mav = new ModelAndView("newtopic");
+        Topic topic = topicService.findTopicByTopicId(topicId);
         mav.addObject("topic", topic);
         return mav;
 
@@ -59,6 +70,6 @@ public class TopicController {
     @RequestMapping("/topic/deletetopic/{topicId}")
     public String deleteTopicPage(@PathVariable(name = "topicId") Long topicId) {
         topicService.delete(topicId);
-        return "redirect:topic";
+        return "redirect:/";
     }
 }

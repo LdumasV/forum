@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Topic List</title>
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 </head>
 <body>
-<div th:replace="fragments/topnav :: navbar"></div>
+
+<div>
+    <h2 >The Forum</h2>
+<!--    <tr>-->
+<!--        <div align = "left" >-->
+
+            <h3><a  th:href="@{'/topic/newtopic'}">Add new Topic</a></h3>
+
+<!--        </div>-->
+<!--    </tr>-->
+
+    <div class="container text-center">
+
+       <h3><a th:href="@{/userregister}">Register</a></h3>
+       <h3><a th:href="@{/login}">Login</a></h3>
+        </div>
+
+    <tr>
+        <div class="col-sm-5 align-center">
+            <div class="panel-body" align = "center" >
+
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Topic ID</th>
+                        <th>Subject</th>
+                        <th>Creator Id</th>
+                        <th>Creation Date</th>
+<!--                        <th>edit</th>-->
+<!--                        <th>delete</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr  th:each="topic : ${listtopics}">
+                        <td th:text="${topic.topicId}">Topic ID</td>
+                        <td th:text="${topic.subject}" >Subject</td>
+                        <td th:text="${topic.creatorId}">creatorId</td>
+                        <td th:text="${topic.creationDate}">Salary</td>
+                       <td> <a th:href="@{'/topic/' + ${topic.topicId}}">Read</a> </td>
+<!--                        <td>-->
+<!--                            <a th:href="@{'/edit/' + ${topic.topicId}}">Edit</a>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <a th:href="@{'/delete/' + ${topic.topicId}}">Delete</a>-->
+<!--                        </td>-->
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </tr>
+
+    </tbody>
+    </table>
+</div>
 </body>
 </html>
+
+
+
+

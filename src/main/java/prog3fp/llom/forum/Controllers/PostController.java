@@ -22,12 +22,12 @@ public class PostController {
     }
 
 
-    @GetMapping("/post/newpost")
+    @GetMapping("/post/newpost/{topicId}")
     public String add(@PathVariable("topicId") Long topicId, Model model) {
         Post post = new Post();
         post.setTopicId(topicId);
         model.addAttribute("post", post);
-        return "editpost";
+        return "newpost";
     }
 
     @RequestMapping(value = "/post/savepost", method = RequestMethod.POST)
@@ -35,17 +35,17 @@ public class PostController {
         //if post is present
 
         if(bindingResult.hasErrors()){
-            return "editpost";
+            return "newpost";
         }
         String topicId = String.valueOf(post.getTopicId());
         postService.save(post);
         //return to the topic via topicId
-        return "redirect:topic/"+topicId;
+        return "redirect:/topic/"+topicId;
     }
 
     @RequestMapping("/post/editpost/{postId}")
     public ModelAndView showEditPostPage(@PathVariable("postId") Long postId) {
-        ModelAndView mav = new ModelAndView("editpost");
+        ModelAndView mav = new ModelAndView("newpost");
         Optional<Post> post = postService.findPostByPostId(postId);
         mav.addObject("post", post);
         return mav;

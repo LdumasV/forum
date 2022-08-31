@@ -1,12 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
+<!--@thymesVar id="topic" type="prog3fp.llom.forum.Domain.Topic"-->
+<!--@thymesVar id="post" type="prog3fp.llom.forum.Domain.Post"-->
+<!--@thymesVar id="postList" type="List<Post>"-->
+<!--*/-->
 <head>
     <meta charset="UTF-8">
-<!--  posts list-->
-    <title>Topic</title>
+    <title>Create New Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 </head>
 <body>
-<div th:replace="fragments/topnav :: navbar"></div>
+<!--<div th:replace="fragments/topnav :: navbar"></div>-->
+<h1 th:text="${topic.subject}">Hello topic</h1>
+
+<!--<form action="#" th:action="@{/}" th:object="${topic}" method="post">-->
+
+    <div>
+        <a th:object="${topic}" th:href="@{'/post/newpost/'+ ${topic.topicId}}">Add a post</a>
+    </div>
+
+<!--</form>-->
+
+    <tr>
+    <div class="col-sm-5 align-center">
+        <div class="panel-body" align = "center" >
+
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Post ID</th>
+                    <th>Text</th>
+                    <th>Creation Date</th>
+                    <th>Creator Id</th>
+                    <th>Topic Id</th>
+                    <!--                        <th>edit</th>-->
+                    <!--                        <th>delete</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each="post : ${topic.postList}">
+                    <td th:text="${post.postId}">Post ID</td>
+                    <td th:text="${post.text}" >Text</td>
+                    <td th:text="${post.creationDate}">Creation Date</td>
+                    <td th:text="${post.creatorId}">creatorId</td>
+                    <td th:text="${post.topicId}">Salary</td>
+                    <td>
+<!--                                <a th:href="@{'/post/newpost/' + ${post.topicId}}">Add a post</a>-->
+                            </td>
+
+<!--                    <td> <a th:href="@{'/post/' + ${topic.topicId}}">Read</a> </td>-->
+                    <!--                        <td>-->
+                    <!--                            <a th:href="@{'/edit/' + ${topic.topicId}}">Edit</a>-->
+                    <!--                        </td>-->
+                    <!--                        <td>-->
+                    <!--                            <a th:href="@{'/delete/' + ${topic.topicId}}">Delete</a>-->
+                    <!--                        </td>-->
+                </tr>
+
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+</tr>
+
+</tbody>
+</table>
 
 </body>
 </html>
+
+
+

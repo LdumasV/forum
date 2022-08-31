@@ -1,6 +1,7 @@
 package prog3fp.llom.forum.Services;
 
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import prog3fp.llom.forum.Domain.Topic;
 import prog3fp.llom.forum.Repositories.TopicRepository;
@@ -19,8 +20,10 @@ public class TopicServiceImpl implements TopicService {
 
 
     @Override
-    public Optional<Topic> findTopicById(Long id) {
-        return topicRepository.findById(id);
+    public Topic findTopicByTopicId(Long id) {
+        Optional<Topic> topic = topicRepository.findByTopicId(id);
+        topic.orElseThrow(() -> new UsernameNotFoundException("Not found: " + id));
+        return topic.get();
     }
 
     @Override
@@ -37,6 +40,11 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public void delete(Long id) {
         topicRepository.deleteById(id);
+    }
+
+    @Override
+    public Topic findTopByOrderByTopicIdDesc() {
+        return topicRepository.findTopByOrderByTopicIdDesc();
     }
 }
 
