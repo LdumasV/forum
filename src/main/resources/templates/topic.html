@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
 <!--@thymesVar id="topic" type="prog3fp.llom.forum.Domain.Topic"-->
 <!--@thymesVar id="post" type="prog3fp.llom.forum.Domain.Post"-->
@@ -14,7 +14,7 @@
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 </head>
 <body>
-<!--<div th:replace="fragments/topnav :: navbar"></div>-->
+<div th:replace="fragments/topnav :: navbar"></div>
 <h1 th:text="${topic.subject}">Hello topic</h1>
 
 <!--<form action="#" th:action="@{/}" th:object="${topic}" method="post">-->
