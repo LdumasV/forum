@@ -23,28 +23,29 @@
 <body>
 <div th:replace="fragments/topnav :: navbar"></div>
 <div align="center">
-    <h1>Register Student</h1>
+    <h1>User Panel</h1>
     <br />
     <div class="col-sm-4">
         <form action="#" th:object="${user}" th:action="@{/save/user}"  method="post">
 
             <div alight="left">
                 <tr>
-                    <label class="form-label" >Username</label>
+                    <label class="form-label" >Change password</label>
                     <td>
                         <input type="hidden" th:field="*{userId}" />
-                        <input type="text" th:field="*{username}" class="form-control" placeholder="username" />
-                        <span th:errors="*{username}" class="errors"></span>
+                        <input type="hidden" th:field="*{username}" />
+                        <input type="password" th:field="*{password}" class="form-control" placeholder="Enter Password" />
+                        <span th:errors="*{password}" class="errors"></span>
                     </td>
                 </tr>
             </div>
             <div alight="left">
                 <tr>
-                    <label class="form-label" >Password</label>
+                    <label class="form-label" >Verify Password</label>
 
                     <td>
-                        <input type="password" th:field="*{password}" class="form-control" placeholder="password" />
-                        <span th:errors="*{password}" class="errors"></span>
+                        <input type="password" th:field="*{password2}" class="form-control" placeholder="Enter password again." />
+                        <span th:errors="*{password2}" class="errors"></span>
                     </td>
                 </tr>
             </div>

@@ -23,6 +23,8 @@ public class User {
     private String username;
 
     private String password;
+    @Transient
+    private String password2;
     @NotEmpty
     @Email
     @Column(unique = true)

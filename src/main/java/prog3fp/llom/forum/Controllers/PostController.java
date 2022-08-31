@@ -42,7 +42,7 @@ public class PostController {
         }
         LocalDate now = LocalDate.now();
         post.setCreationDate(String.valueOf(now));
-        String topicId = String.valueOf(post.getTopicId());
+        Long topicId = post.getTopicId();
         postService.save(post);
         //return to the topic via topicId
         return "redirect:/topic/"+topicId;

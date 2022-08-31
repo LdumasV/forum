@@ -46,32 +46,27 @@ public class UserController {
             return "register";
         }
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/save/user", method = RequestMethod.POST)
     public String saveEmployee(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
-        //if user is present
-        if(userService.findUserByUsername(user.getUsername()).isPresent()){
-            if(!user.getPassword().isEmpty()) {
+            if(!user.getPassword().isEmpty() || !user.getPassword2().isEmpty()) {
                 if (user.getPassword().length() < 8 || user.getPassword().length() > 15) {
                     FieldError error = new FieldError("user", "password", "Password must be 8 to 15 characters.");
                     bindingResult.addError(error);
                 }
+                if (user.getPassword() != user.getPassword2()) {
+                    FieldError error = new FieldError("user", "password2", "The passwords are not the same.");
+                    bindingResult.addError(error);
+                }
             }
-        } else {
-            //if user isn't present / is new
-            if (user.getPassword().length() < 8 || user.getPassword().length() > 15) {
-                FieldError error = new FieldError("user", "password", "Password must be 8 to 15 characters.");
-                bindingResult.addError(error);
-            }
-        }
 
         if(bindingResult.hasErrors()){
             return "userpanel";
         }
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/user/edit/" + user.getUserId();
     }
 
     @RequestMapping("/user/edit/{userId}")
