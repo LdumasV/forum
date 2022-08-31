@@ -60,8 +60,10 @@ public class PostController {
     }
     @RequestMapping("/post/deletepost/{postId}")
     public String deletePostPage(@PathVariable(name = "postId") Long postId) {
+        Post post = postService.findPostByPostId(postId).get();
+        Long topicId = post.getTopicId();
         postService.delete(postId);
-        return "redirect:topic";
+        return "redirect:/topic/" + topicId;
     }
 
 }

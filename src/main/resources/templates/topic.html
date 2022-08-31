@@ -38,8 +38,8 @@
                     <th>Creation Date</th>
                     <th>Creator Id</th>
                     <th>Topic Id</th>
-                    <!--                        <th>edit</th>-->
-                    <!--                        <th>delete</th>-->
+                    <th>edit</th>
+                    <th>delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,17 +49,8 @@
                     <td th:text="${post.creationDate}">Creation Date</td>
                     <td th:text="${post.user.userId}">creatorId</td>
                     <td th:text="${post.topicId}">Salary</td>
-                    <td>
-<!--                                <a th:href="@{'/post/newpost/' + ${post.topicId}}">Add a post</a>-->
-                            </td>
-
-<!--                    <td> <a th:href="@{'/post/' + ${topic.topicId}}">Read</a> </td>-->
-                    <!--                        <td>-->
-                    <!--                            <a th:href="@{'/edit/' + ${topic.topicId}}">Edit</a>-->
-                    <!--                        </td>-->
-                    <!--                        <td>-->
-                    <!--                            <a th:href="@{'/delete/' + ${topic.topicId}}">Delete</a>-->
-                    <!--                        </td>-->
+                    <td><a th:href="@{'/post/editpost/' + ${post.postId}}">Edit</a></td>
+                    <td><a th:href="@{'/post/deletepost/' + ${post.postId}}">Delete</a></td>
                 </tr>
 
 
