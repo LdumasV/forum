@@ -15,7 +15,7 @@
 <!--    <tr>-->
 <!--        <div align = "left" >-->
 
-            <h3><a  th:href="@{'/topic/newtopic'}">Add new Topic</a></h3>
+            <h3><a sec:authorize="hasAuthority('ROLE_USER')" th:href="@{'/topic/newtopic/' + ${#authentication.getPrincipal().getUserId()}}">Add new Topic</a></h3>
 
 <!--        </div>-->
 <!--    </tr>-->

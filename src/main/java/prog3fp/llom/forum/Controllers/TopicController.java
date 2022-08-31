@@ -12,6 +12,7 @@ import prog3fp.llom.forum.Services.PostService;
 import prog3fp.llom.forum.Services.TopicService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,9 +41,11 @@ public class TopicController {
         return mav;
     }
 
-    @GetMapping("/topic/newtopic")
-    public String add(Model model) {
-        model.addAttribute("topic", new Topic());
+    @GetMapping("/topic/newtopic/{userId}")
+    public String add(@PathVariable("userId") Long userId, Model model) {
+        Topic topic = new Topic();
+        topic.setUserId(userId);
+        model.addAttribute("topic", topic);
         return "newtopic";
     }
 
@@ -53,6 +56,8 @@ public class TopicController {
         if(bindingResult.hasErrors()){
             return "newtopic";
         }
+        LocalDate now = LocalDate.now();
+        topic.setCreationDate(String.valueOf(now));
         topicService.save(topic);
         Topic saved = topicService.findTopByOrderByTopicIdDesc();
         return "redirect:/";

@@ -49,8 +49,8 @@
                     <td th:text="${post.creationDate}">Creation Date</td>
                     <td th:text="${post.user.userId}">creatorId</td>
                     <td th:text="${post.topicId}">Salary</td>
-                    <td><a th:href="@{'/post/editpost/' + ${post.postId}}">Edit</a></td>
-                    <td><a th:href="@{'/post/deletepost/' + ${post.postId}}">Delete</a></td>
+                    <td sec:authorize="hasAuthority('ROLE_USER')" th:if="${#authentication.getPrincipal().getUsername() == post.user.username}"><a th:href="@{'/post/editpost/' + ${post.postId}}">Edit</a></td>
+                    <td sec:authorize="hasAuthority('ROLE_USER')" th:if="${#authentication.getPrincipal().getUsername() == post.user.username}"><a th:href="@{'/post/deletepost/' + ${post.postId}}">Delete</a></td>
                 </tr>
 
 

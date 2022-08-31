@@ -21,32 +21,13 @@
         <tr>
           <label class="form-label" >Subject</label>
           <td>
+            <input type="hidden" th:field="*{creationDate}" />
+            <input type="hidden" th:field="*{userId}"/>
             <input type="hidden" th:field="*{topicId}" />
             <input type="text" th:field="*{subject}" class="form-control"  />
           </td>
         </tr>
       </div>
-
-
-      <div align="left">
-        <tr>
-          <label class="form-label" >Creator ID</label>
-
-          <td>
-            <input type="text" th:field="*{userId}" class="form-control"  />
-          </td>
-        </tr>
-      </div>
-
-      <div align="left">
-        <tr>
-          <label class="form-label" >Creation Date</label>
-          <td><input type="date" th:field="*{creationDate}" class="form-control" /></td>
-        </tr>
-      </div>
-
-
-
       <br>
       <tr>
         <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
