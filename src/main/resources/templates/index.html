@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
@@ -11,7 +11,7 @@
 <body>
 
 <div>
-    <h2 >The Forum</h2>
+    <div th:replace="fragments/topnav :: navbar"></div>
 <!--    <tr>-->
 <!--        <div align = "left" >-->
 
@@ -46,7 +46,7 @@
                     <tr  th:each="topic : ${listtopics}">
                         <td th:text="${topic.topicId}">Topic ID</td>
                         <td th:text="${topic.subject}" >Subject</td>
-                        <td th:text="${topic.creatorId}">creatorId</td>
+                        <td th:text="${topic.userId}">creatorId</td>
                         <td th:text="${topic.creationDate}">Salary</td>
                        <td> <a th:href="@{'/topic/' + ${topic.topicId}}">Read</a> </td>
 <!--                        <td>-->

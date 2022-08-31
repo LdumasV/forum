@@ -18,7 +18,7 @@ public class Topic {
     private Long topicId;
     @Column(unique = true)
     private String subject;
-    private Long creatorId;
+    private Long userId;
     @DateTimeFormat
     private String creationDate;
     @Transient

@@ -3,10 +3,7 @@ package prog3fp.llom.forum.Domain;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Data
@@ -20,6 +17,10 @@ public class Post {
     private String text;
     @DateTimeFormat
     private String creationDate;
-    private Long creatorId;
+//    private Long userId;
     private Long topicId;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 }

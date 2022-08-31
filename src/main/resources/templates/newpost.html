@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
 <!--@thymesVar id="post" type="prog3fp.llom.forum.Domain.Post"-->
+<!--@thymesVar id="user" type="prog3fp.llom.forum.Domain.User"-->
 <!--@thymesVar id="topicId" type="Long"-->
 <!--@thymesVar id="postId" type="Long"-->
-<!--@thymesVar id="creatorId" type="Long"-->
+<!--@thymesVar id="userId" type="Long"-->
 <!--@thymesVar id="creationDate" type="String"-->
 <!--@thymesVar id="text" type="String"-->
 <!--*/-->
@@ -29,40 +30,14 @@
                 <tr>
                     <label class="form-label" >Text</label>
                     <td>
+                        <input type="hidden" th:field="*{creationDate}"/>
+                        <input type="hidden" th:field="*{topicId}"/></td>
+                        <input type="hidden" th:field="*{user.userId}"/>
                         <input type="hidden" th:field="*{postId}" />
                         <input type="text" th:field="*{text}" class="form-control"  />
                     </td>
                 </tr>
             </div>
-
-
-            <div align="left">
-                <tr>
-                    <label class="form-label" >Creation Date</label>
-                    <td><input type="date" th:field="*{creationDate}" class="form-control" /></td>
-                </tr>
-            </div>
-
-            <div align="left">
-                <tr>
-                    <label class="form-label" >Creator ID</label>
-
-                    <td>
-                        <input type="text" th:field="*{creatorId}" class="form-control"  />
-                    </td>
-                </tr>
-            </div>
-
-            <div align="left">
-                <tr>
-                    <label class="form-label" >Topic ID</label>
-                    <td><input type="text" th:field="*{topicId}" class="form-control" /></td>
-                </tr>
-            </div>
-
-
-
-            <br>
             <tr>
                 <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
             </tr>

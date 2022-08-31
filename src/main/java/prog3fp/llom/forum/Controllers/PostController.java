@@ -6,9 +6,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import prog3fp.llom.forum.Domain.Post;
+import prog3fp.llom.forum.Domain.User;
 import prog3fp.llom.forum.Services.PostService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +24,13 @@ public class PostController {
     }
 
 
-    @GetMapping("/post/newpost/{topicId}")
-    public String add(@PathVariable("topicId") Long topicId, Model model) {
+    @GetMapping("/post/newpost/{topicId}/{userId}")
+    public String add(@PathVariable("topicId") Long topicId, Model model, @PathVariable Long userId) {
         Post post = new Post();
         post.setTopicId(topicId);
+        User user = new User();
+        user.setUserId(userId);
+        post.setUser(user);
         model.addAttribute("post", post);
         return "newpost";
     }
@@ -37,6 +42,8 @@ public class PostController {
         if(bindingResult.hasErrors()){
             return "newpost";
         }
+        LocalDate now = LocalDate.now();
+        post.setCreationDate(String.valueOf(now));
         String topicId = String.valueOf(post.getTopicId());
         postService.save(post);
         //return to the topic via topicId

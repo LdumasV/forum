@@ -19,8 +19,8 @@
 
 <!--<form action="#" th:action="@{/}" th:object="${topic}" method="post">-->
 
-    <div>
-        <a th:object="${topic}" th:href="@{'/post/newpost/'+ ${topic.topicId}}">Add a post</a>
+    <div sec:authorize="hasAuthority('ROLE_USER')">
+        <a th:object="${topic}" th:href="@{'/post/newpost/'+ ${topic.topicId} + '/' + ${#authentication.getPrincipal().getUserId()}}">Add a post</a>
     </div>
 
 <!--</form>-->
@@ -47,7 +47,7 @@
                     <td th:text="${post.postId}">Post ID</td>
                     <td th:text="${post.text}" >Text</td>
                     <td th:text="${post.creationDate}">Creation Date</td>
-                    <td th:text="${post.creatorId}">creatorId</td>
+                    <td th:text="${post.user.userId}">creatorId</td>
                     <td th:text="${post.topicId}">Salary</td>
                     <td>
 <!--                                <a th:href="@{'/post/newpost/' + ${post.topicId}}">Add a post</a>-->

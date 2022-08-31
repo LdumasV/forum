@@ -32,9 +32,8 @@ public class TopicController {
 
     @GetMapping("/topic/{topicId}")
     public ModelAndView viewHomePage(@PathVariable("topicId") Long topicId, Model model) {
-        List<Post> postList = postService.findTopicPosts(topicId);
         Topic topic = topicService.findTopicByTopicId(topicId);
-        topic.setPostList(postList);
+
         ModelAndView mav = new ModelAndView("topic");
         mav.addObject("topic", topic);
 
