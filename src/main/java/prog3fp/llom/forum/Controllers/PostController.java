@@ -11,8 +11,6 @@ import prog3fp.llom.forum.Services.PostService;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -53,7 +51,7 @@ public class PostController {
     @RequestMapping("/post/editpost/{postId}")
     public ModelAndView showEditPostPage(@PathVariable("postId") Long postId) {
         ModelAndView mav = new ModelAndView("newpost");
-        Optional<Post> post = postService.findPostByPostId(postId);
+        Post post = postService.findPostByPostId(postId).get();
         mav.addObject("post", post);
         return mav;
 

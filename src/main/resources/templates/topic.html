@@ -33,22 +33,18 @@
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Post ID</th>
                     <th>Text</th>
                     <th>Creation Date</th>
-                    <th>Creator Id</th>
-                    <th>Topic Id</th>
-                    <th>edit</th>
-                    <th>delete</th>
+                    <th>Author</th>
+                    <th sec:authorize="hasAuthority('ROLE_USER')">edit</th>
+                    <th sec:authorize="hasAuthority('ROLE_USER')">delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr  th:each="post : ${topic.postList}">
-                    <td th:text="${post.postId}">Post ID</td>
                     <td th:text="${post.text}" >Text</td>
                     <td th:text="${post.creationDate}">Creation Date</td>
-                    <td th:text="${post.user.userId}">creatorId</td>
-                    <td th:text="${post.topicId}">Salary</td>
+                    <td th:text="${post.user.username}">creatorId</td>
                     <td sec:authorize="hasAuthority('ROLE_USER')" th:if="${#authentication.getPrincipal().getUsername() == post.user.username}"><a th:href="@{'/post/editpost/' + ${post.postId}}">Edit</a></td>
                     <td sec:authorize="hasAuthority('ROLE_USER')" th:if="${#authentication.getPrincipal().getUsername() == post.user.username}"><a th:href="@{'/post/deletepost/' + ${post.postId}}">Delete</a></td>
                 </tr>
